@@ -4,25 +4,25 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * @author Olga Maciaszek-Sharma
  */
 @Configuration
-public class RestTemplateConfig {
+public class WebClientConfig {
 
 	@Bean
 	@LoadBalanced
-	@Qualifier("loadBalancedRestTemplate")
-	RestTemplate loadBalancedRestTemplate() {
-		return new RestTemplate();
+	@Qualifier("loadBalancedWebClient")
+	WebClient.Builder loadBalancedWebClientBuilder() {
+		return WebClient.builder();
 	}
 
 	@Bean
-	@Qualifier("restTemplate")
-	RestTemplate restTemplate() {
-		return new RestTemplate();
+	@Qualifier("webClient")
+	WebClient.Builder webClientBuilder() {
+		return WebClient.builder();
 	}
 }
 
